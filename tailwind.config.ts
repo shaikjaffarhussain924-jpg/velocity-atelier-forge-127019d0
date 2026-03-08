@@ -13,6 +13,9 @@ export default {
       },
     },
     extend: {
+      maxWidth: {
+        container: "1280px",
+      },
       fontFamily: {
         heading: ['var(--font-heading)'],
         body: ['var(--font-body)'],
