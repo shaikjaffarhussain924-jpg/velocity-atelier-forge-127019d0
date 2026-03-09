@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Settings, Gauge, Shield, Sparkles, Disc3, Armchair } from "lucide-react";
 
 const services = [
@@ -71,12 +72,12 @@ const Services = () => {
               <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                 {service.description}
               </p>
-              <a
-                href="#booking"
+              <Link
+                to="/book"
                 className="text-xs tracking-[0.15em] uppercase text-primary hover:text-primary/80 transition-colors font-medium"
               >
                 Schedule Service →
-              </a>
+              </Link>
             </motion.div>
           ))}
         </div>

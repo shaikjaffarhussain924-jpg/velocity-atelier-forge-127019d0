@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, CheckCircle } from "lucide-react";
+import { MessageCircle, CheckCircle, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const carBrands = ["BMW", "Mercedes-Benz", "Audi", "Porsche", "Range Rover", "Jaguar", "Bentley", "Maserati", "Other"];
 const serviceTypes = [
@@ -34,27 +35,36 @@ const BookingForm = () => {
   };
 
   const inputClasses =
-    "w-full bg-secondary border border-border text-foreground px-4 py-3.5 text-sm focus:outline-none focus:border-primary/60 transition-colors placeholder:text-muted-foreground font-body";
+    "w-full bg-secondary border border-border text-foreground px-4 py-3.5 text-sm focus:outline-none focus:border-primary/60 transition-all placeholder:text-muted-foreground font-body";
   const selectClasses =
-    "w-full bg-secondary border border-border text-foreground px-4 py-3.5 text-sm focus:outline-none focus:border-primary/60 transition-colors appearance-none font-body";
+    "w-full bg-secondary border border-border text-foreground px-4 py-3.5 text-sm focus:outline-none focus:border-primary/60 transition-all appearance-none font-body";
 
   return (
-    <section id="booking" className="section-padding bg-secondary/50">
+    <section className="section-padding bg-background min-h-[calc(100vh-5rem)]">
       <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="mb-12"
         >
-          <div className="luxury-divider mb-6" />
-          <h2 className="font-heading text-3xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">
-            Reserve Your Appointment
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-md mx-auto">
-            Experience concierge-level automotive care.
-          </p>
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-xs tracking-[0.12em] uppercase text-muted-foreground hover:text-foreground transition-colors mb-10"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to Home
+          </Link>
+
+          <div className="text-center">
+            <div className="luxury-divider mb-6" />
+            <h2 className="font-heading text-3xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">
+              Reserve Your Appointment
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-md mx-auto">
+              Experience concierge-level automotive care.
+            </p>
+          </div>
         </motion.div>
 
         {submitted ? (
@@ -80,9 +90,8 @@ const BookingForm = () => {
         ) : (
           <motion.form
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             onSubmit={handleSubmit}
             className="metallic-card p-8 md:p-12"
           >
@@ -170,7 +179,7 @@ const BookingForm = () => {
 
             <button
               type="submit"
-              className="w-full text-sm tracking-[0.15em] uppercase bg-primary text-primary-foreground px-10 py-4 hover:bg-primary/90 transition-colors duration-300 font-medium"
+              className="w-full text-sm tracking-[0.15em] uppercase bg-primary text-primary-foreground px-10 py-4 hover:bg-primary/90 transition-all duration-300 font-medium hover:shadow-[0_0_30px_hsl(352_82%_38%/0.3)]"
             >
               Reserve Appointment
             </button>
