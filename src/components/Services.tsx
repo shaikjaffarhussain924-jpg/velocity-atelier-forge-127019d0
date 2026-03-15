@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Droplets, Shield, Atom, Paintbrush, Car, Armchair, Disc3, Wrench, Sparkles, Layers } from "lucide-react";
+import { serviceSlugMap } from "@/data/servicePages";
 
 const services = [
   {
@@ -71,33 +72,38 @@ const Services = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, i) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: i * 0.08 }}
-              className="metallic-card p-8 group cursor-pointer"
-            >
-              <div className="w-12 h-12 flex items-center justify-center border border-border bg-background/50 mb-5 group-hover:border-primary/50 group-hover:shadow-[0_0_20px_hsl(352_82%_38%/0.15)] transition-all duration-500">
-                <service.icon className="w-6 h-6 text-primary group-hover:scale-110 transition-transform duration-500" />
-              </div>
-              <h3 className="font-heading text-lg font-semibold text-foreground mb-3">
-                {service.title}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                {service.description}
-              </p>
-              <Link
-                to="/book"
-                className="text-xs tracking-[0.15em] uppercase text-primary hover:text-primary/80 transition-colors font-medium inline-flex items-center gap-2 group/link"
+          {services.map((service, i) => {
+            const slug = serviceSlugMap[service.title];
+            const linkTo = slug ? `/services/${slug}` : "/book";
+
+            return (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: i * 0.08 }}
+                className="metallic-card p-8 group cursor-pointer"
               >
-                Schedule Service
-                <span className="inline-block transition-transform duration-300 group-hover/link:translate-x-1">→</span>
-              </Link>
-            </motion.div>
-          ))}
+                <div className="w-12 h-12 flex items-center justify-center border border-border bg-background/50 mb-5 group-hover:border-primary/50 group-hover:shadow-[0_0_20px_hsl(352_82%_38%/0.15)] transition-all duration-500">
+                  <service.icon className="w-6 h-6 text-primary group-hover:scale-110 transition-transform duration-500" />
+                </div>
+                <h3 className="font-heading text-lg font-semibold text-foreground mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                  {service.description}
+                </p>
+                <Link
+                  to={linkTo}
+                  className="text-xs tracking-[0.15em] uppercase text-primary hover:text-primary/80 transition-colors font-medium inline-flex items-center gap-2 group/link"
+                >
+                  Schedule Service
+                  <span className="inline-block transition-transform duration-300 group-hover/link:translate-x-1">→</span>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
