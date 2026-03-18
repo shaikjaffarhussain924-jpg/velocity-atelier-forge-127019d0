@@ -232,6 +232,39 @@ const ServiceDetailPage = ({ data }: Props) => {
         </section>
       )}
 
+      {/* Rich Content Sections */}
+      {data.richContent && data.richContent.length > 0 && data.richContent.map((section, idx) => (
+        <section key={idx} className={`section-padding ${idx % 2 === 0 ? 'bg-secondary/30' : 'bg-background'}`}>
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-6">
+                {section.title}
+              </h2>
+              {section.paragraphs.map((p, pi) => (
+                <p key={pi} className="text-muted-foreground leading-relaxed text-base md:text-lg mb-4 last:mb-0">
+                  {p}
+                </p>
+              ))}
+              {section.listItems && section.listItems.length > 0 && (
+                <ul className="mt-4 space-y-2">
+                  {section.listItems.map((item, li) => (
+                    <li key={li} className="flex items-center gap-3 text-foreground text-sm">
+                      <CheckCircle className="w-4 h-4 text-primary shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </motion.div>
+          </div>
+        </section>
+      ))}
+
       {/* Pricing */}
       <section className="section-padding bg-background">
         <div className="max-w-5xl mx-auto">
