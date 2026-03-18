@@ -47,6 +47,12 @@ export interface ProcessStep {
   title: string;
 }
 
+export interface RichContentSection {
+  title: string;
+  paragraphs: string[];
+  listItems?: string[];
+}
+
 export interface ServicePageData {
   slug: string;
   titleTag: string;
@@ -66,6 +72,7 @@ export interface ServicePageData {
   materials?: MaterialCard[];
   comparisonTitle?: string;
   comparison?: { headers: [string, string]; rows: ComparisonRow[] };
+  richContent?: RichContentSection[];
   pricingTitle: string;
   pricing: PricingCard[];
   pricingNote?: string;
